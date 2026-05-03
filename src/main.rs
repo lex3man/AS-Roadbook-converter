@@ -26,7 +26,7 @@ fn main() {
         std::process::exit(1);
     });
 
-    utils::chank_png::make_slices(&state).unwrap_or_else(|err| {
+    utils::split_png::make_slices(&state).unwrap_or_else(|err| {
         eprintln!("Error: {}", err);
         std::process::exit(1);
     });

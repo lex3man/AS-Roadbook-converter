@@ -12,9 +12,7 @@ pub fn convert_to_png(state: &crate::State) -> Result<(), Box<dyn std::error::Er
     let pdf = PDF::from_file(&pdf_path)?;
     let pages = pdf.page_count();
 
-    if state.debug {
-        println!("Debug: PDF loaded successfully with {} pages", pages);
-    }
+    debug_println(state, &format!("Loaded PDF: {} with {} pages", pdf_path, pages));
 
     let mut render_options = RenderOptionsBuilder::default().build()?;
     render_options.resolution = DPI::Uniform(150);
