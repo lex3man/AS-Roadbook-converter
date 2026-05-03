@@ -1,5 +1,7 @@
 use std::fs;
 
+use crate::utils::debug::debug_println;
+
 const SLICE_WIDTH: u32 = 840;
 const SLICE_HEIGHT: u32 = 215;
 
@@ -25,9 +27,7 @@ pub fn make_slices(state: &crate::State) -> Result<(), Box<dyn std::error::Error
                     index,
                     i
                 ));
-                if state.debug {
-                    println!("Saving slice to: {:?}", slice_path);
-                }
+                debug_println(state, &format!("Saving slice to: {:?}", slice_path));
                 slice.save_with_format(slice_path, image::ImageFormat::Png)?;
             }
         }
