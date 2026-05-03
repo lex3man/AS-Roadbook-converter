@@ -1,0 +1,37 @@
+use std::fs;
+
+const SLICE_WIDTH: u32 = 840;
+const SLICE_HEIGHT: u32 = 215;
+
+pub fn make_slices(state: &crate::State) -> Result<(), Box<dyn std::error::Error>> {
+    let input_dir = std::path::Path::new(&state.output).join("pages");
+    let output_dir = std::path::Path::new(&state.output);
+    std::fs::create_dir_all(&output_dir)?;
+
+    for (index, entry) in std::fs::read_dir(input_dir)?.into_iter().enumerate() {
+        let entry = entry?;
+        let path = entry.path();
+        if path.extension().and_then(|s| s.to_str()) == Some("png") {
+            let mut img = image::open(&path)?;
+
+            let slices_per_page = img.height() / SLICE_HEIGHT;
+
+            for i in 0..slices_per_page {
+                let slice = img.crop(17, i * SLICE_HEIGHT + 114, SLICE_WIDTH, SLICE_HEIGHT);
+                let pref = if index < 10 { "00" } else if index < 100 { "0" } else { "" };
+                let slice_path = output_dir.join(format!(
+                    "{}{}_slice_{}.png",
+                    pref,
+                    index,
+                    i
+                ));
+                if state.debug {
+                    println!("Saving slice to: {:?}", slice_path);
+                }
+                slice.save_with_format(slice_path, image::ImageFormat::Png)?;
+            }
+        }
+    }
+    fs::remove_dir_all(std::path::Path::new(&state.output).join("pages"))?;
+    Ok(())
+}
