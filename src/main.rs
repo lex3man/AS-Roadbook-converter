@@ -4,6 +4,9 @@ pub struct State {
     pub debug: bool,
     pub source: String,
     pub output: String,
+    pub padding: String,
+    pub height: String,
+    pub width: String,
 }
 
 impl Default for State {
@@ -12,6 +15,9 @@ impl Default for State {
             debug: false,
             source: String::new(),
             output: String::new(),
+            padding: String::from("114"),
+            height: String::from("215"),
+            width: String::from("840"),
         }
     }
 }

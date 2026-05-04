@@ -15,4 +15,22 @@ pub fn matches_debug(matches: &clap::ArgMatches, state: &mut crate::State) {
             println!("[DEBUG] Output directory set to {}", output);
         }
     }
+    if let Some(padding) = matches.get_one::<String>("top padding") {
+        state.padding = padding.clone();
+        if state.debug {
+            println!("[DEBUG] Top padding set to {}", padding);
+        }
+    }
+    if let Some(height) = matches.get_one::<String>("slice height") {
+        state.height = height.clone();
+        if state.debug {
+            println!("[DEBUG] Slice height set to {}", height);
+        }
+    }
+    if let Some(width) = matches.get_one::<String>("slice width") {
+        state.width = width.clone();
+        if state.debug {
+            println!("[DEBUG] Slice width set to {}", width);
+        }
+    }
 }

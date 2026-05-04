@@ -18,7 +18,8 @@ pub fn convert_to_png(state: &crate::State) -> Result<(), Box<dyn std::error::Er
     render_options.resolution = DPI::Uniform(150);
     let pages = pdf.render(pdf2image::Pages::All, render_options)?;
     for (i, page) in pages.iter().enumerate() {
-        let path = output_dir.join(format!("page_{}.png", i));
+        let pref = if i < 10 { "00" } else if i < 100 { "0" } else { "" };
+        let path = output_dir.join(format!("page_{}{}.png", pref, i));
         debug_println(state, &format!("Saving page {} to: {:?}", i, path));
         page.save_with_format(path, image::ImageFormat::Png)?;
     }
