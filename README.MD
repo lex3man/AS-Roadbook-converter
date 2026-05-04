@@ -21,10 +21,10 @@ cargo run -- -s <input_file> -o <output_dir> -d
 
 ### Args
 - `-s` or `--source`: Input file
-- `-o` or `--output`: Output directory
+- `-o` or `--output`: Output directory (default: `output`)
 - `-d` or `--debug`: Activate debug mode
-- `-p` or `--padding`: Top padding for page offset
-- `--height`: Slice height
-- `--width`: Slice width
+- `-p` or `--padding`: Top padding for page offset (default: `114`)
+- `--height`: Slice height (default: `215`)
+- `--width`: Slice width (default: `840`)
 
 Only `--source` arg required.
