@@ -20,7 +20,7 @@ pub fn make_slices(state: &crate::State) -> Result<(), Box<dyn std::error::Error
             let slices_per_page = img.height() / height;
 
             for i in 0..slices_per_page {
-                let slice = img.crop(17, i * height + padding, width, height);
+                let slice = img.crop(32, i * height + padding, width, height);
                 let pref = if index < 10 { "00" } else if index < 100 { "0" } else { "" };
                 let slice_path = output_dir.join(format!(
                     "{}{}_slice_{}.png",

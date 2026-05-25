@@ -15,9 +15,9 @@ impl Default for State {
             debug: false,
             source: String::new(),
             output: String::new(),
-            padding: String::from("114"),
-            height: String::from("215"),
-            width: String::from("840"),
+            padding: String::from("107"),
+            height: String::from("206"),
+            width: String::from("816"),
         }
     }
 }

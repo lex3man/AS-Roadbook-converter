@@ -30,21 +30,21 @@ pub fn cli() -> clap::Command {
             Arg::new("top padding")
                 .short('p')
                 .long("padding")
-                .default_value("114")
+                .default_value("107")
                 .required(false)
                 .help("Top padding"),
         )
         .arg(
             Arg::new("slice height")
                 .long("height")
-                .default_value("215")
+                .default_value("206")
                 .required(false)
                 .help("Slice height"),
         )
         .arg(
             Arg::new("slice width")
                 .long("width")
-                .default_value("840")
+                .default_value("816")
                 .required(false)
                 .help("Slice width"),
         )
